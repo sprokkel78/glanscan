@@ -66,36 +66,36 @@ class MyThread(threading.Thread):
         self._stop_event.set()
 
     def run(self):
-        while not self._stop_event.is_set():
-            print("Thread is running...")
-            sleep(10)
+        #while not self._stop_event.is_set():
+        print("Thread is running...")
 
-            global tbuffer
-            global entry_iprange
+        global tbuffer
+        global entry_iprange
 
-            iprange = entry_iprange.get_text()
-            if iprange != "" and ";" not in iprange:
-                txt = ""
-                txt = txt + "\n\tScan Report: \n"
+        iprange = entry_iprange.get_text()
+        if iprange != "" and ";" not in iprange:
+            txt = ""
+            txt = txt + "\n\tScan Report: \n"
 
-                status = subprocess.Popen("/usr/bin/nmap -sn -PR " + iprange + " | grep report | cut -d\" \" -f5,6",
+            status = subprocess.Popen("/usr/bin/pkexec /usr/bin/nmap -P " + iprange + " | grep report | cut -d\" \" -f5,6",
                                           shell=True, stdout=subprocess.PIPE,
                                           stderr=subprocess.PIPE, universal_newlines=True)
-                rcstat = status.wait()
-                out = status.communicate()
-                txt_split = out[0].split("\n")
-                x = 0
-                while (x < len(txt_split)):
-                    txt = txt + "\n\t" + txt_split[x]
-                    x = x + 1
+            rcstat = status.wait()
+            out = status.communicate()
+            txt_split = out[0].split("\n")
+            x = 0
+            while (x < len(txt_split)):
+                txt = txt + "\n\t" + txt_split[x]
+                x = x + 1
 
-                txt = txt + "\n\tHosts Up: " + str(x - 1) + "\n"
-                GLib.idle_add(tbuffer.set_text, txt)
+            txt = txt + "\n\tHosts Up: " + str(x - 1) + "\n"
+            GLib.idle_add(tbuffer.set_text, txt)
 
         print("Thread stopped.")
         statusbar.push(0, "Done.")
         entry_iprange.set_sensitive(1)
         button_ipscan.set_sensitive(1)
+        sleep(3)
 
 
 def stop_thread(thread):
@@ -155,14 +155,14 @@ def start_portscan(obj):
 
         if ogg == 1 and oga == 1:
             status = subprocess.Popen(
-                "gnome-terminal --title '" + title + "' -- bash -c '/usr/bin/nmap -T4 -p 1-65535 -sV " + host + ";/usr/bin/ogg123 -q /usr/share/sounds/Yaru/stereo/system-ready.oga >/dev/null; sleep 5000'",
+                "gnome-terminal --title '" + title + "' -- bash -c '/usr/bin/pkexec /usr/bin/nmap -T4 -p 1-65535 -sV " + host + ";/usr/bin/ogg123 -q /usr/share/sounds/Yaru/stereo/system-ready.oga >/dev/null; sleep 5000'",
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE, universal_newlines=True)
             rcstat = status.wait()
         else:
             status = subprocess.Popen(
-                "gnome-terminal --title '" + title + "' -- bash -c '/usr/bin/nmap -T4 -p 1-65535 -sV " + host + ";sleep 5000'",
+                "gnome-terminal --title '" + title + "' -- bash -c '/usr/bin/pkexec /usr/bin/nmap -T4 -p 1-65535 -sV " + host + ";sleep 5000'",
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE, universal_newlines=True)
@@ -219,7 +219,7 @@ class MyApp(Adw.Application):
         button_ipscan_stop.set_sensitive(0)
         button_ipscan_stop.set_size_request(100, -1)
         button_ipscan_stop.connect("clicked", lambda btn: stop_thread(thread))
-        box4.append(button_ipscan_stop)
+        #box4.append(button_ipscan_stop)
 
         label_spacer1 = Gtk.Label()
         box2.append(label_spacer1)
