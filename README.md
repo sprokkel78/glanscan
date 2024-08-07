@@ -1,15 +1,22 @@
 glanscan-sprokkel78
 
 A graphical user interface in PyGTK4 for use with the nmap binary for scanning your lan and performing portscans on Ubuntu and other Linux distro's. 
-It requires Python3.10 or higher and the PyGTK apps, it also relies on gnome-terminal for performing portscans.
-Developed and tested on Ubuntu 23.10. 
+It requires Python3.10 and the PyGTK apps, it also relies on gnome-terminal for performing portscans.
+Developed and tested on Ubuntu 24.04. 
 
-Installation on Ubuntu 23.10
+Installation on Ubuntu 24.04
 
-1. $sudo apt install python3 python3-dev python3-pip python3-venv
-2. $sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-4.0 gir1.2-adw-1
-3. $sudo apt install gnome-terminal
+1. $sudo apt install gnome-terminal nmap
+2. $git clone git@github.com:sprokkel78/glanscan.git
+3. $cd glanscan
 4. $python3 ./glanscan.py
+
+For System-Wide Installation, run:
+- $sudo ./install.sh
+
+Then start with:
+- $glanscan
+- or by clicking the application icon.
 
 Added 'install.sh' script for system-wide installation.
 - The startup shell script will be /usr/bin/glanscan
@@ -21,5 +28,7 @@ Added 'uninstall.sh' script for system-wide uninstallation.
   This will also remove /usr/share/applications/com.sprokkel78.glanscan.desktop
   
 Check https://www.github.com/sprokkel78/glanscan for contributing, development features and pre-releases.
+
+Check https://pypi.org/project/glanscan-sprokkel78/ for the full python package.
 
 Funding: Paypal email: sprokkel78.bart@gmail.com
