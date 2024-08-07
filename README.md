@@ -7,7 +7,7 @@ Developed and tested on Ubuntu 24.04.
 Installation on Ubuntu 24.04
 
 1. $sudo apt install gnome-terminal nmap
-2. $git clone git@github.com:sprokkel78/glanscan.git
+2. $git clone https://github.com/sprokkel78/glanscan.git
 3. $cd glanscan
 4. $python3 ./glanscan.py
 
