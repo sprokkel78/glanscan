@@ -187,7 +187,7 @@ class MyApp(Adw.Application):
         win = MainWindow(application=app)
         win.set_title("gLanScan " + ver)
         win.set_default_size(500, 500)
-        win.set_resizable(False)
+        win.set_resizable(True)
         box0 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         win.set_child(box0)
         box1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
@@ -228,6 +228,9 @@ class MyApp(Adw.Application):
         global tbuffer
         textview = Gtk.TextView.new_with_buffer(tbuffer)
         scrolled_window.set_size_request(500, 300)
+        scrolled_window.set_hexpand(True)
+        scrolled_window.set_vexpand(True)
+
         textview.set_buffer(tbuffer)
         textview.set_editable(False)
         textview.set_wrap_mode(Gtk.WrapMode.NONE)
