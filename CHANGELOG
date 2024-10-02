@@ -7,5 +7,9 @@ NOTES:
 CHANGELOG
 ---------
 
+# glanscan-sprokkel78 1.0.2
+- scanning networks and host now requires root permissions.
+- added exapandable scrolled window and option to go fullscreen.
+
 # glanscan-sprokkel78 1.0.1
 - proof of concept.
