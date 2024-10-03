@@ -6,8 +6,9 @@ import gi
 import threading
 
 gi.require_version('Gtk', '4.0')
+gi.require_version("Gdk", "4.0")
 gi.require_version('Adw', '1')
-from gi.repository import Gtk, Adw, GLib
+from gi.repository import Gtk, Gdk, Adw, GLib
 from time import sleep
 
 # VERSION = 1.0.2
@@ -176,6 +177,18 @@ class MainWindow(Gtk.ApplicationWindow):
 
 
 class MyApp(Adw.Application):
+
+    def on_key_press(self, controller, keyval, keycode, state, win):
+        # Check if Ctrl+Q is pressed
+        ctrl_pressed = state & Gdk.ModifierType.CONTROL_MASK
+        if ctrl_pressed and keyval == Gdk.KEY_q:
+            print("Ctrl+Q pressed, quitting application")
+            self.quit()
+
+        if ctrl_pressed and keyval == Gdk.KEY_m:
+            print("Ctrl+Q pressed, quitting application")
+            win.minimize()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.connect('activate', self.on_activate)
@@ -188,6 +201,11 @@ class MyApp(Adw.Application):
         win.set_title("gLanScan " + ver)
         win.set_default_size(500, 500)
         win.set_resizable(True)
+
+        key_controller = Gtk.EventControllerKey()
+        key_controller.connect("key-pressed", self.on_key_press, win)
+        win.add_controller(key_controller)
+
         box0 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         win.set_child(box0)
         box1 = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
