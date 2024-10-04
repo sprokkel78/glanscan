@@ -199,7 +199,7 @@ class MyApp(Adw.Application):
 
         win = MainWindow(application=app)
         win.set_title("gLanScan " + ver)
-        win.set_default_size(500, 500)
+        win.set_default_size(800, 400)
         win.set_resizable(True)
 
         key_controller = Gtk.EventControllerKey()
@@ -245,7 +245,7 @@ class MyApp(Adw.Application):
         scrolled_window = Gtk.ScrolledWindow()
         global tbuffer
         textview = Gtk.TextView.new_with_buffer(tbuffer)
-        scrolled_window.set_size_request(500, 300)
+        scrolled_window.set_size_request(800, 400)
         scrolled_window.set_hexpand(True)
         scrolled_window.set_vexpand(True)
 
