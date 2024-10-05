@@ -2,7 +2,7 @@ glanscan-sprokkel78
 
 A graphical user interface in PyGTK4 for use with the nmap binary for scanning your lan and performing portscans on Ubuntu and other Linux distro's. 
 It requires Python3.10 and the PyGTK apps, it also relies on gnome-terminal for performing portscans.
-Developed and tested on Ubuntu 24.04. 
+Developed and tested on Ubuntu 24.04.  
 
 Installation on Ubuntu 24.04
 
