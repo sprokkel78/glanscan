@@ -4,7 +4,7 @@ A graphical user interface in PyGTK4 for use with the nmap binary for scanning y
 It requires Python3.10 and the PyGTK apps, it also relies on gnome-terminal for performing portscans.
 Developed and tested on Ubuntu 24.04.  
 
-Installation on Ubuntu 24.04
+Installation on Fedora 40 & Ubuntu 24.04
 
 1. $sudo apt install gnome-terminal nmap
 2. $git clone https://github.com/sprokkel78/glanscan.git
