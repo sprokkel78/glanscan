@@ -223,12 +223,13 @@ class MyApp(Adw.Application):
         box4 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box2.append(box4)
 
-        start_label1 = Gtk.Label(label="IP-range|Host")
-        start_label1.set_size_request(100, -1)
+        start_label1 = Gtk.Label(label="IP-range | Host")
+        start_label1.set_size_request(150, -1)
         box4.append(start_label1)
 
         global entry_iprange
         entry_iprange.set_max_length(40)
+        entry_iprange.set_size_request(250, -1)
         #entry_iprange.connect("activate", scan_lan)
         box4.append(entry_iprange)
 
@@ -265,12 +266,13 @@ class MyApp(Adw.Application):
         box3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box2.append(box3)
 
-        start_label = Gtk.Label(label="Host|IP")
-        start_label.set_size_request(100, -1)
+        start_label = Gtk.Label(label="Hostname | IP")
+        start_label.set_size_request(150, -1)
         box3.append(start_label)
 
         global entry_host
-        entry_host.set_max_length(20)
+        entry_host.set_max_length(40)
+        entry_host.set_size_request(250, -1)
         #entry_host.connect("activate", start_portscan)
         box3.append(entry_host)
 
