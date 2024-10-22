@@ -78,19 +78,22 @@ class MyThread(threading.Thread):
             txt = ""
             txt = txt + "\n\tScan Report: \n"
 
-            status = subprocess.Popen("/usr/bin/pkexec /usr/bin/nmap -P " + iprange + " | grep -E 'report|open'",
+            status = subprocess.Popen("/usr/bin/nmap -P " + iprange + " | grep -E \"report|open\"",
                                           shell=True, stdout=subprocess.PIPE,
                                           stderr=subprocess.PIPE, universal_newlines=True)
             rcstat = status.wait()
             out = status.communicate()
             txt_split = out[0].split("\n")
             x = 0
+            y = 0
             while (x < len(txt_split)):
-                txt = txt + "\n\t" + txt_split[x]
                 if "report" in txt_split[x]:
-                    x = x + 1
+                    y = y + 1
+                    txt = txt + "\n"
+                txt = txt + "\n\t" + txt_split[x]
+                x = x + 1
 
-            txt = txt + "\n\tHosts Up: " + str(x - 1) + "\n"
+            txt = txt + "\n\n\tHosts Up: " + str(y) + "\n"
             GLib.idle_add(tbuffer.set_text, txt)
 
         print("Thread stopped.")
