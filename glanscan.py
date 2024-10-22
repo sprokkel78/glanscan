@@ -223,7 +223,7 @@ class MyApp(Adw.Application):
         box4 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box2.append(box4)
 
-        start_label1 = Gtk.Label(label="IP-range")
+        start_label1 = Gtk.Label(label="IP-range|Host")
         start_label1.set_size_request(100, -1)
         box4.append(start_label1)
 
@@ -265,7 +265,7 @@ class MyApp(Adw.Application):
         box3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box2.append(box3)
 
-        start_label = Gtk.Label(label="Host")
+        start_label = Gtk.Label(label="Host|IP")
         start_label.set_size_request(100, -1)
         box3.append(start_label)
 

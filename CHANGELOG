@@ -12,6 +12,7 @@ CHANGELOG
 - changed startup resolution to 800x400px
 - changed statusbar push events to label.
 - added open ports to the scan results.
+- small update to labels.
 
 # glanscan-sprokkel78 1.0.2
 - scanning networks and host now requires root permissions.
