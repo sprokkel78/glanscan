@@ -24,7 +24,7 @@ entry_host = Gtk.Entry()
 entry_iprange = Gtk.Entry()
 button_ipscan = Gtk.Button(label="IP-Scan")
 button_ipscan_stop = Gtk.Button(label="Stop")
-statusbar = Gtk.Statusbar()
+statusbar = Gtk.Label(label="")
 
 
 # STARTUP CHECKS
@@ -78,22 +78,26 @@ class MyThread(threading.Thread):
             txt = ""
             txt = txt + "\n\tScan Report: \n"
 
-            status = subprocess.Popen("/usr/bin/pkexec /usr/bin/nmap -P " + iprange + " | grep report | cut -d\" \" -f5,6",
+            status = subprocess.Popen("/usr/bin/nmap -P " + iprange + " | grep -E \"report|open\"",
                                           shell=True, stdout=subprocess.PIPE,
                                           stderr=subprocess.PIPE, universal_newlines=True)
             rcstat = status.wait()
             out = status.communicate()
             txt_split = out[0].split("\n")
             x = 0
+            y = 0
             while (x < len(txt_split)):
+                if "report" in txt_split[x]:
+                    y = y + 1
+                    txt = txt + "\n"
                 txt = txt + "\n\t" + txt_split[x]
                 x = x + 1
 
-            txt = txt + "\n\tHosts Up: " + str(x - 1) + "\n"
+            txt = txt + "\n\n\tHosts Up: " + str(y) + "\n"
             GLib.idle_add(tbuffer.set_text, txt)
 
         print("Thread stopped.")
-        statusbar.push(0, "Done.")
+        statusbar.set_text("  Done.")
         entry_iprange.set_sensitive(1)
         button_ipscan.set_sensitive(1)
         sleep(3)
@@ -103,7 +107,7 @@ def stop_thread(thread):
     global thread_started
     thread.stop()
     thread_started = False
-    statusbar.push(0, "Stopping the scan ..., please wait.")
+    statusbar.set_text("  Stopping the scan ..., please wait.")
     button_ipscan_stop.set_sensitive(0)
 
 
@@ -117,7 +121,7 @@ def scan_lan(obj):
 
         tbuffer.set_text("\n\tScanning ..., please wait.")
         button_ipscan_stop.set_sensitive(1)
-        statusbar.push(0, "Scanning the IP-range ..., please wait.")
+        statusbar.set_text("  Scanning the IP-range ..., please wait.")
 
 
         def start_thread():
@@ -219,12 +223,13 @@ class MyApp(Adw.Application):
         box4 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box2.append(box4)
 
-        start_label1 = Gtk.Label(label="IP-range")
-        start_label1.set_size_request(100, -1)
+        start_label1 = Gtk.Label(label="IP-range | Host")
+        start_label1.set_size_request(150, -1)
         box4.append(start_label1)
 
         global entry_iprange
         entry_iprange.set_max_length(40)
+        entry_iprange.set_size_request(250, -1)
         #entry_iprange.connect("activate", scan_lan)
         box4.append(entry_iprange)
 
@@ -261,12 +266,13 @@ class MyApp(Adw.Application):
         box3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         box2.append(box3)
 
-        start_label = Gtk.Label(label="Host")
-        start_label.set_size_request(100, -1)
+        start_label = Gtk.Label(label="Hostname | IP")
+        start_label.set_size_request(150, -1)
         box3.append(start_label)
 
         global entry_host
-        entry_host.set_max_length(20)
+        entry_host.set_max_length(40)
+        entry_host.set_size_request(250, -1)
         #entry_host.connect("activate", start_portscan)
         box3.append(entry_host)
 
@@ -281,7 +287,8 @@ class MyApp(Adw.Application):
         global statusbar
         box2.append(statusbar)
 
-        statusbar.push(0, "Ready.")
+        statusbar.set_halign(Gtk.Align.START)
+        statusbar.set_text("  Ready.")
         tbuffer.set_text("\n\tEnter an IP-range to start a scan.")
 
         win.present()
