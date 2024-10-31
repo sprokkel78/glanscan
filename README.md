@@ -32,3 +32,5 @@ Check https://www.github.com/sprokkel78/glanscan for contributing, development f
 Check https://pypi.org/project/glanscan-sprokkel78/ for the full python package.
 
 Funding: Paypal email: sprokkel78.bart@gmail.com
+
+![Screenshot](https://github.com/sprokkel78/glanscan/blob/develop/screenshots/glanscan-1.png) 
