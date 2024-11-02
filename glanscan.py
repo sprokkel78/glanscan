@@ -76,7 +76,7 @@ class MyThread(threading.Thread):
         iprange = entry_iprange.get_text()
         if iprange != "" and ";" not in iprange:
             txt = ""
-            txt = txt + "\n\tScan Report: \n"
+            txt = txt + "\n\tScan Report: "
 
             status = subprocess.Popen("/usr/bin/nmap -P " + iprange + " | grep -E \"report|open\"",
                                           shell=True, stdout=subprocess.PIPE,
@@ -93,7 +93,7 @@ class MyThread(threading.Thread):
                 txt = txt + "\n\t" + txt_split[x]
                 x = x + 1
 
-            txt = txt + "\n\n\tHosts Up: " + str(y) + "\n"
+            txt = txt + "\n\tHosts Up: " + str(y) + "\n"
             GLib.idle_add(tbuffer.set_text, txt)
 
         print("Thread stopped.")
