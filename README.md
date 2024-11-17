@@ -10,10 +10,10 @@ Runs out of the	box after default installation of Fedora or Ubuntu.
 ![Screenshot](https://github.com/sprokkel78/glanscan/blob/develop/screenshots/glanscan-1.png)
 
 Installation on Fedora41 and Ubuntu 24.04
-    $sudo dnf|apt install gnome-terminal nmap
-    $git clone https://github.com/sprokkel78/glanscan.git
-    $cd glanscan
-    $python3 ./glanscan.py
+1. $sudo dnf|apt install gnome-terminal nmap
+2. $git clone https://github.com/sprokkel78/glanscan.git
+3. $cd glanscan
+4. $python3 ./glanscan.py
 
 For System-Wide Installation, run:
 
