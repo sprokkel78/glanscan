@@ -78,7 +78,7 @@ class MyThread(threading.Thread):
             txt = ""
             txt = txt + "\n\tScan Report: "
 
-            status = subprocess.Popen("/usr/bin/nmap -P " + iprange + " | grep -E \"report|open\"",
+            status = subprocess.Popen("pkexec /usr/bin/nmap -P " + iprange + " | grep -E \"report|open\"",
                                           shell=True, stdout=subprocess.PIPE,
                                           stderr=subprocess.PIPE, universal_newlines=True)
             rcstat = status.wait()
@@ -160,14 +160,14 @@ def start_portscan(obj):
 
         if ogg == 1 and oga == 1:
             status = subprocess.Popen(
-                "gnome-terminal --title '" + title + "' -- bash -c '/usr/bin/nmap -T4 -p 1-65535 -sV " + host + ";/usr/bin/ogg123 -q /usr/share/sounds/Yaru/stereo/system-ready.oga >/dev/null; sleep 5000'",
+                "gnome-terminal --title '" + title + "' -- bash -c 'pkexec /usr/bin/nmap -T4 -p 1-65535 -sV " + host + ";/usr/bin/ogg123 -q /usr/share/sounds/Yaru/stereo/system-ready.oga >/dev/null; sleep 5000'",
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE, universal_newlines=True)
             rcstat = status.wait()
         else:
             status = subprocess.Popen(
-                "gnome-terminal --title '" + title + "' -- bash -c '/usr/bin/nmap -T4 -p 1-65535 -sV " + host + ";sleep 5000'",
+                "gnome-terminal --title '" + title + "' -- bash -c 'pkexec /usr/bin/nmap -T4 -p 1-65535 -sV " + host + ";sleep 5000'",
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE, universal_newlines=True)

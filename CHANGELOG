@@ -8,7 +8,7 @@ CHANGELOG
 ---------
 
 # glanscan-sprokkel78 1.0.4
-- removed pkexec references.
+- added pkexec references.
 
 # glanscan-sprokkel78 1.0.3
 - added ctrl-q and ctrl-m for quiting and minimizing the app.
