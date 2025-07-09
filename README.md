@@ -1,4 +1,4 @@
-glanscan-sprokkel78
+![Screenshot](https://github.com/sprokkel78/glanscan/blob/develop/screenshots/title.png)
 
 A graphical user interface in PyGTK4 for use with the nmap binary for scanning your lan and performing portscans
 on Ubuntu and other Linux distro's. 
